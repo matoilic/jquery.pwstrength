@@ -1,7 +1,7 @@
 /**
- * jquery.placeholder http://matoilic.github.com/jquery.placeholder
+ * jquery.pwstrength http://matoilic.github.com/jquery.pwstrength
  *
- * @version v0.2.3
+ * @version v0.1
  * @author Mato Ilic <info@matoilic.ch>
  * @copyright 2012 Mato Ilic
  *
@@ -43,7 +43,21 @@
         return 4;
     };
     
-    $.fn.pwstrength = function() {
+    function updateIndicator(event) {
+        var strength = $.pwstrength($(this).val()), options = event.data;
+        options.indicator.addClass(options.classes[strength]);
+        options.indicator.find(options.label).html(options.texts[strength]);
+    }
+    
+    $.fn.pwstrength = function(options) {
+        var options = $.extend({
+            label: '.label',
+            classes: ['pw-very-weak', 'pw-weak', 'pw-mediocre', 'pw-strong', 'pw-very-strong'],
+            texts: ['very weak', 'weak', 'mediocre', 'strong', 'very strong']
+        }, options || {});
+        options.indicator = $('#' + this.data('indicator'));
         
+        this.keypress(options, updateIndicator);
+        return this;
     };
 })(jQuery);
