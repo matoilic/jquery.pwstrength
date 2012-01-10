@@ -13,10 +13,10 @@
     $.pwstrength = function(password) {
         var score = 0, length = password.length, upperCase, lowerCase, digits, nonAlpha;
         
-        if(length < 5) score += 3;
-        else if(length < 8) score += 6;
-        else if(length < 16) score += 12;
-        else score += 18;
+        if(length < 5) score += 0;
+        else if(length < 8) score += 5;
+        else if(length < 16) score += 10;
+        else score += 15;
         
         lowerCase = password.match(/[a-z]/g);
         if(lowerCase) score += 1;
@@ -30,22 +30,26 @@
         if(digits && digits.length > 1) score += 5;
         
         nonAlpha = password.match(/\W/g)
-        if(nonAlpha) score += (nonAlpha.length > 1) ? 10 : 8;
+        if(nonAlpha) score += (nonAlpha.length > 1) ? 15 : 10;
         
-        if(upperCase && lowerCase && digits && nonAlpha) score += 10;
+        if(upperCase && lowerCase && digits && nonAlpha) score += 15;
 
-        if(password.match(/\s/)) score += 15;
+        if(password.match(/\s/)) score += 10;
 
-        if(score < 16) return 0;
-        if(score < 25) return 1;
+        if(score < 15) return 0;
+        if(score < 20) return 1;
         if(score < 35) return 2;
-        if(score < 45) return 3;
+        if(score < 50) return 3;
         return 4;
     };
     
     function updateIndicator(event) {
-        var strength = $.pwstrength($(this).val()), options = event.data;
-        options.indicator.addClass(options.classes[strength]);
+        var strength = $.pwstrength($(this).val()), options = event.data, klass;
+        klass = options.classes[strength];
+        
+        options.indicator.removeClass(options.indicator.data('pwclass'));
+        options.indicator.data('pwclass', klass);
+        options.indicator.addClass(klass);
         options.indicator.find(options.label).html(options.texts[strength]);
     }
     
@@ -57,6 +61,6 @@
         }, options || {});
         options.indicator = $('#' + this.data('indicator'));
         
-        return this.keypress(options, updateIndicator);
+        return this.keyup(options, updateIndicator);
     };
 })(jQuery);

@@ -29,13 +29,14 @@ describe("jquery.pwstrength", function() {
         var $field = initPasswordField(), $indicator = $('#indicator');
         
         $field.val('abcd');
-        $field.keypress();
+        $field.keyup();
         expect($indicator.hasClass('pw-very-weak')).toBeTruthy();
         expect($indicator.find('.label').html()).toEqual('very weak');
         
         $field.val('@b12De Fghbe#');
-        $field.keypress();
+        $field.keyup();
         expect($indicator.hasClass('pw-very-strong')).toBeTruthy();
+        expect($indicator.hasClass('pw-very-weak')).toBeFalsy();
         expect($indicator.find('.label').html()).toEqual('very strong');
     });
 });
