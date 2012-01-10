@@ -27,14 +27,14 @@
         if(upperCase && lowerCase) score += 2;
         
         digits = password.match(/\d/g);
-        if(digits && digits.length) score += 5;
+        if(digits && digits.length > 1) score += 5;
         
         nonAlpha = password.match(/\W/g)
-        if(nonAlpha) score += (nonAlpha.length > 1) ? 10 : 5;
+        if(nonAlpha) score += (nonAlpha.length > 1) ? 10 : 8;
         
-        if(upperCase && lowerCase && digits && nonAlpha) score += 5;
+        if(upperCase && lowerCase && digits && nonAlpha) score += 10;
 
-        if(password.match(/\s/)) score += 10;
+        if(password.match(/\s/)) score += 15;
 
         if(score < 16) return 0;
         if(score < 25) return 1;
@@ -57,7 +57,6 @@
         }, options || {});
         options.indicator = $('#' + this.data('indicator'));
         
-        this.keypress(options, updateIndicator);
-        return this;
+        return this.keypress(options, updateIndicator);
     };
 })(jQuery);
