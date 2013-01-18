@@ -1,9 +1,9 @@
 /**
  * jquery.pwstrength http://matoilic.github.com/jquery.pwstrength
  *
- * @version v0.1
+ * @version v0.1.1
  * @author Mato Ilic <info@matoilic.ch>
- * @copyright 2012 Mato Ilic
+ * @copyright 2013 Mato Ilic
  *
  * Dual licensed under the MIT and GPL licenses:
  * http://www.opensource.org/licenses/mit-license.php

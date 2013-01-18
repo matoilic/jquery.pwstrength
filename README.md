@@ -12,9 +12,13 @@ http://matoilic.github.com/jquery.pwstrength
 
 * initial release
 
+**0.1.1**
+
+* updated plugin specification for the jquery plugin repository
+
 ## Licence ##
 
-Copyright &copy; 2012 Mato Ilic <<info@matoilic.ch>>
+Copyright &copy; 2013 Mato Ilic <<info@matoilic.ch>>
 
 jquery.placeholder is dual licensed under the MIT and GPL licenses:
 
